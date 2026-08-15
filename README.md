@@ -1,8 +1,8 @@
 # SEC 8-K Catalyst Tracker
 
 A Python web app that monitors SEC EDGAR for 8-K filings across a 30-company large-cap tech universe, classifies them by event type, and serves them through a clean dashboard. Built with FastAPI, SQLite, and the `edgartools` library.
+<img width="175" height="259" alt="dashboard" src="https://github.com/user-attachments/assets/99395eff-761e-4666-9962-6c3699413aac" />
 
-![Dashboard](dashboard.png)
 
 ---
 
