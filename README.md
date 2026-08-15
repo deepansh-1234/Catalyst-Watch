@@ -8,7 +8,7 @@ A Python web app that monitors SEC EDGAR for 8-K filings across a 30-company lar
 
 ## What it does
 
-8-K filings are the "unscheduled material events" companies are required to report to the SEC — earnings releases, executive changes, cybersecurity incidents, major transactions. For anyone following equities, these are often the most time-sensitive documents a company produces.
+8-K filings are the "unscheduled material events" companies are required to report to the SEC - earnings releases, executive changes, cybersecurity incidents, major transactions. For anyone following equities, these are often the most time-sensitive documents a company produces.
 
 This app polls EDGAR every 15 minutes in the background, writes each company's latest filing to a local SQLite cache, and classifies the event type using the SEC item code system (2.02 = earnings, 5.02 = leadership change, 1.05 = cybersecurity incident, etc.). The dashboard reads from the cache, so page loads are instant with no live API calls on the request path.
 
@@ -55,7 +55,7 @@ export EDGAR_NAME="Your Name"
 export EDGAR_EMAIL="your@email.com"
 ```
 
-These are passed directly to `edgartools` and go into the HTTP header on every EDGAR request. Use a real email — the SEC uses this to contact you if your access patterns look unusual.
+These are passed directly to `edgartools` and go into the HTTP header on every EDGAR request. Use a real email - the SEC uses this to contact you if your access patterns look unusual.
 
 **3. Run**
 ```bash
@@ -72,10 +72,10 @@ The app maps SEC item codes to readable event types and attaches a short impact 
 
 | SEC Item Code | Event Type | Impact Label |
 |---|---|---|
-| 2.02 | Earnings Release | Immediate — near-term price volatility likely |
-| 5.02 | Executive / Board Change | Medium-term — monitor strategic continuity |
-| 1.01 | Material Definitive Agreement | Strategic — long-term capital allocation shift |
-| 1.05 | Cybersecurity Incident | Critical — assess regulatory and operational risk |
+| 2.02 | Earnings Release | Immediate - near-term price volatility likely |
+| 5.02 | Executive / Board Change | Medium-term - monitor strategic continuity |
+| 1.01 | Material Definitive Agreement | Strategic - long-term capital allocation shift |
+| 1.05 | Cybersecurity Incident | Critical - assess regulatory and operational risk |
 | 8.01 | Other Material Disclosure | Review filing for context |
 
 If a filing contains an item code not in the above list, the raw SEC code is surfaced directly rather than guessing at a label.
@@ -84,9 +84,9 @@ If a filing contains an item code not in the above list, the raw SEC code is sur
 
 ## A few things worth knowing
 
-The 15-minute polling interval is intentional — EDGAR's fair-use guidelines ask for no more than 10 requests per second and reasonable overall volume. The background worker requests one filing per company per cycle, well within limits.
+The 15-minute polling interval is intentional - EDGAR's fair-use guidelines ask for no more than 10 requests per second and reasonable overall volume. The background worker requests one filing per company per cycle, well within limits.
 
-The SQLite `INSERT OR REPLACE` on the `id` (filing URL) field means re-running the sync never creates duplicate rows. If a company files a second 8-K within the 90-day window, only the most recent one is stored. This is a deliberate design choice to keep the dashboard focused — if you want full filing history, the `get_filings()` call already returns all filings and you'd just remove the `filings[0]` slice.
+The SQLite `INSERT OR REPLACE` on the `id` (filing URL) field means re-running the sync never creates duplicate rows. If a company files a second 8-K within the 90-day window, only the most recent one is stored. This is a deliberate design choice to keep the dashboard focused - if you want full filing history, the `get_filings()` call already returns all filings and you'd just remove the `filings[0]` slice.
 
 The dashboard currently filters to filings from the last 90 days. This is a rolling window that auto-updates, as opposed to a hardcoded date that would require manual updates over time.
 
