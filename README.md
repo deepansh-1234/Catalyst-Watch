@@ -35,7 +35,7 @@ GET /
   └── returns rendered HTML — no live network calls on the request path
 ```
 
-The background worker runs as an asyncio task inside the FastAPI lifespan manager — no separate process, no Celery, no Redis needed.
+The background worker runs as an asyncio task inside the FastAPI lifespan manager - no separate process, no Celery, no Redis needed.
 
 ---
 
